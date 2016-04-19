@@ -21,12 +21,12 @@ function log {
 
 if [[ "$TOTAL_VERSIONS" -ge "$MAX_VERSIONS" ]]
 then
-        rm $OLD_FILE
         log "RM $OLD_FILE"
+        rm $OLD_FILE
 fi
 
 if [ "$NEW_FILE" != '' ]
 then
-        cp "$NEW_FILE" "$DESTINY"
         log "CP '$NEW_FILE' '$DESTINY'"
+        cp "$NEW_FILE" "$DESTINY"
 fi
