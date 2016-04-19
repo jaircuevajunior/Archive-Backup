@@ -15,10 +15,14 @@ NEW_FILE="$ORIGIN/$(ls $ORIGIN -lt|tail -n1|sed -r 's/\ +/ /g'|cut -d' ' -f9)"
 OLD_FILE="$DESTINY/$(ls $DESTINY -lt|tail -n1|sed -r 's/\ +/ /g'|cut -d' ' -f9)"
 TOTAL_VERSIONS="$(ls $DESTINY -l|tail -n+2|wc -l)"
 
+function log {
+        echo `date +'%Y-%m-%d %H:%M:%S'` $1
+}
+
 if [[ "$TOTAL_VERSIONS" -ge "$MAX_VERSIONS" ]]
 then
         rm $OLD_FILE
-        echo "REMOVER $OLD_FILE"
+        log "RM $OLD_FILE"
 fi
 
 if [ "$NEW_FILE" != '' ]
@@ -26,5 +30,5 @@ then
         TODAY="$(date +'%Y-%m-%d')"
         NEW_FILE="$DESTINY/$TODAY.tar.gz"
         tar -czf $NEW_FILE $ORIGIN
-        echo "TAR '$NEW_FILE' '$ORIGIN'"
+        log "TAR '$NEW_FILE' '$ORIGIN'"
 fi
