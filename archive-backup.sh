@@ -21,14 +21,14 @@ function log {
 
 if [[ "$TOTAL_VERSIONS" -ge "$MAX_VERSIONS" ]]
 then
-        rm $OLD_FILE
         log "RM $OLD_FILE"
+        rm $OLD_FILE
 fi
 
 if [ "$NEW_FILE" != '' ]
 then
         TODAY="$(date +'%Y-%m-%d')"
         NEW_FILE="$DESTINY/$TODAY.tar.gz"
-        tar -czf $NEW_FILE $ORIGIN
         log "TAR '$NEW_FILE' '$ORIGIN'"
+        tar -czf $NEW_FILE $ORIGIN
 fi
