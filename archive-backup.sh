@@ -11,7 +11,6 @@ ORIGIN="$1"
 DESTINY="$2"
 MAX_VERSIONS="$3"
 
-NEW_FILE="$ORIGIN/$(ls $ORIGIN -lt|tail -n1|sed -r 's/\ +/ /g'|cut -d' ' -f9)"
 OLD_FILE="$DESTINY/$(ls $DESTINY -lt|tail -n1|sed -r 's/\ +/ /g'|cut -d' ' -f9)"
 TOTAL_VERSIONS="$(ls $DESTINY -l|tail -n+2|wc -l)"
 
@@ -25,10 +24,10 @@ then
         rm $OLD_FILE
 fi
 
-if [ "$NEW_FILE" != '' ]
+if [ -e "$ORIGIN" ]
 then
         TODAY="$(date +'%Y-%m-%d')"
-        NEW_FILE="$DESTINY/$TODAY.tar.gz"
+        NEW_FILE="$DESTINY/$TODAY.tar"
         log "TAR '$NEW_FILE' '$ORIGIN'"
-        tar -czf $NEW_FILE $ORIGIN
+        tar -cf $NEW_FILE $ORIGIN
 fi
