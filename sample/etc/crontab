@@ -1,0 +1,8 @@
+# BACKUP MENSAL
+00 22	1 * *	root	/mnt/disk1/bkp_scripts/monthly.sh >> /mnt/disk1/bkp_scripts/monthly/logs/output.log
+
+# BACKUP SEMANAL
+30 22   * * 1   root    /mnt/disk1/bkp_scripts/weekly.sh >> /mnt/disk1/bkp_scripts/weekly/logs/output.log
+
+# BACKUP DIARIO
+45 18	* * *	root	/mnt/disk1/bkp_scripts/daily.sh >> /mnt/disk1/bkp_scripts/daily/logs/output.log
